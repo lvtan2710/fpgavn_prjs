@@ -1,0 +1,43 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+// FPGAVN.COM
+//
+// Filename     : tristate_buf.v
+// Description  : This macro is the tri-state buffer using the keyword bufif1 
+// parameter size.
+//
+// Author       : fpgavn@fpgavn.com
+// Created On   : Sat May 27 14:08:39 2017
+// History (Date, Changed By)
+//
+////////////////////////////////////////////////////////////////////////////////
+
+module tristate_buf
+    (
+     in,
+     oe,
+     out
+     );
+
+////////////////////////////////////////////////////////////////////////////////
+// Parameter declarations
+parameter SIZE = 8;
+
+////////////////////////////////////////////////////////////////////////////////
+// Port declarations
+input [SIZE-1:0] in;
+input [SIZE-1:0] oe;
+output [SIZE-1:0] out;
+
+////////////////////////////////////////////////////////////////////////////////
+// Local logic and instantiation
+genvar n;
+
+generate
+    for (n = 0; n < SIZE; n = n + 1)
+        begin
+        bufif1 tristate(out[n], in[n], oe[n]);
+        end
+endgenerate
+
+endmodule 

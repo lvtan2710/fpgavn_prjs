@@ -1,0 +1,1 @@
+`define RTL_MEM_SIM

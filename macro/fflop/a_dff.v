@@ -1,0 +1,43 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+// FPGAVN.COM
+//
+// Filename     : a_dff.v
+// Description  : This module is the Asynchronous D-flipflop with low reset.
+//
+// Author       : fpgavn@fpgavn.com
+// Created On   : Sat May 27 14:34:22 2017
+// History (Date, Changed By)
+//
+////////////////////////////////////////////////////////////////////////////////
+
+module a_dff
+    (
+     clk,
+     rst_n,
+     d,
+     q
+     );
+
+////////////////////////////////////////////////////////////////////////////////
+// Parameter declarations
+parameter RST_VAL = 0;
+
+////////////////////////////////////////////////////////////////////////////////
+// Port declarations
+input     clk;
+input     rst_n;
+input     d;
+output    q;
+
+////////////////////////////////////////////////////////////////////////////////
+// Local logic and instantiation
+reg       q;
+always @(posedge clk or negedge rst_n)
+    begin
+    if (!rst_n) q <= RST_VAL;
+    else        q <= d;
+    end
+
+endmodule 
+
